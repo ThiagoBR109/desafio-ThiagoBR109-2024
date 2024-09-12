@@ -11,7 +11,6 @@ class RecintosZoo {
     }
 
     analisaRecintos(animal, quantidade) {
-        // Validar se o animal é válido
         if (!this.animaisValidos.includes(animal)) {
             return {
                 erro: "Animal inválido",
@@ -19,7 +18,6 @@ class RecintosZoo {
             };
         }
     
-        // Validar se a quantidade é válida
         if (quantidade <= 0) {
             return {
                 erro: "Quantidade inválida",
@@ -27,15 +25,12 @@ class RecintosZoo {
             };
         }
     
-        // Verificar recintos viáveis e ordenar por espaço livre (primeiro critério) e capacidade total (segundo critério)
         let recintosViaveis = this.recintos
             .filter(recinto => recinto.espacoLivre >= quantidade)
             .sort((a, b) => {
-                // Ordenar por espaço livre (decrescente)
                 if (a.espacoLivre !== b.espacoLivre) {
                     return b.espacoLivre - a.espacoLivre;
                 }
-                // Em caso de empate no espaço livre, ordenar por capacidade total (crescente)
                 return a.capacidadeTotal - b.capacidadeTotal;
             });
     
@@ -46,7 +41,6 @@ class RecintosZoo {
             };
         }
     
-        // Retornar os recintos viáveis
         return {
             erro: false,
             recintosViaveis: recintosViaveis.map(recinto => 
